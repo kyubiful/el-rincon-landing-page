@@ -21,7 +21,7 @@ export const Contact = () => {
     )
   }, [name, email, phone, message])
   
-  const sendMail = (e) => {
+  const sendMail = async (e) => {
     e.preventDefault()
     
     name === '' && setFormErrors({ ...formErrors, name: true })
@@ -31,48 +31,23 @@ export const Contact = () => {
 
     if(name === '' || email === '' || phone === '' || message === '') return
 
-    const body = {
-      sender: { name: 'El Rincón Web', email: 'elrincon.valdemanco@gmail.com' },
-      to: [{ email, name }],
-      bcc: [{ email: 'elrincon.valdemanco@gmail.com', name: 'El Rincón' }],
-      subject: 'Ha contactado con Casa Rural El Rincón',
-      templateId: 1,
-      params: { 
-        name,
-        email,
-        phone,
-        message
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, email, phone, message })
+      })
+      if (!response.ok) {
+        throw new Error('Error al enviar')
       }
-    }
-
-  const options = {
-    method: 'POST',
-    headers: {
-      accept: 'application/json',
-      'content-type': 'application/json',
-      'api-key': import.meta.env.PUBLIC_MAIL_API_KEY
-    },
-    body: JSON.stringify(body)
-  };
-
-  fetch('https://api.brevo.com/v3/smtp/email', options)
-    .then(response => {
-      console.log({ response })
-      if(response.status === 201) {
-        return response.json()
-      }
-      throw Error('Error')
-    })
-    .then(() => {
       setName('')
       setEmail('')
       setPhone('')
       setMessage('')
       toast.success('Mensaje enviado correctamente')
-    })
-    .catch(err => {
+    } catch (err) {
       toast.error('Error al envíar el mensaje')
-    });
+    }
 
 }
 return (

@@ -15,16 +15,16 @@ import '../styles.css'
 
 <Layout title="Casa Rural el Rincón">
 	<main>
-		<Menu client:only/>
-		<MobileMenu client:only/>
+		<Menu client:only="react"/>
+		<MobileMenu client:only="react"/>
 		<Home />
 		<Gallery client:idle />
 		<HouseInfo />
-		<Opinions client:only />
+		<Opinions client:only="react" />
 		<Contact client:visible />
 		<Footer />
 	</main>
-	<Toaster closeButton richColors client:only/>
+	<Toaster closeButton richColors client:only="react"/>
 </Layout>
 <script>
 
