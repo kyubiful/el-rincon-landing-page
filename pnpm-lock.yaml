@@ -4,11 +4,6 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-patchedDependencies:
-  '@astrojs/vercel@7.8.2':
-    hash: a98383a1dce32120139e0a5d8aea8ab2693c61d1c66d9ac520454301c6aa0776
-    path: patches/@astrojs__vercel@7.8.2.patch
-
 importers:
 
   .:
@@ -24,7 +19,7 @@ importers:
         version: 5.1.5(astro@4.16.19(@types/node@25.5.0)(rollup@4.60.1)(typescript@5.1.6))(tailwindcss@3.0.24(postcss@8.5.8))
       '@astrojs/vercel':
         specifier: ^7.8.2
-        version: 7.8.2(patch_hash=a98383a1dce32120139e0a5d8aea8ab2693c61d1c66d9ac520454301c6aa0776)(astro@4.16.19(@types/node@25.5.0)(rollup@4.60.1)(typescript@5.1.6))(react@18.0.0)(rollup@4.60.1)
+        version: 7.8.2(astro@4.16.19(@types/node@25.5.0)(rollup@4.60.1)(typescript@5.1.6))(react@18.0.0)(rollup@4.60.1)
       '@emotion/react':
         specifier: ^11.11.1
         version: 11.11.1(@types/react@18.0.21)(react@18.0.0)
@@ -3328,7 +3323,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@astrojs/vercel@7.8.2(patch_hash=a98383a1dce32120139e0a5d8aea8ab2693c61d1c66d9ac520454301c6aa0776)(astro@4.16.19(@types/node@25.5.0)(rollup@4.60.1)(typescript@5.1.6))(react@18.0.0)(rollup@4.60.1)':
+  '@astrojs/vercel@7.8.2(astro@4.16.19(@types/node@25.5.0)(rollup@4.60.1)(typescript@5.1.6))(react@18.0.0)(rollup@4.60.1)':
     dependencies:
       '@astrojs/internal-helpers': 0.4.1
       '@vercel/analytics': 1.6.1(react@18.0.0)
