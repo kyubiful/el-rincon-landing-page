@@ -1,5 +1,5 @@
 import type { APIRoute } from 'astro';
-import nodemailer from 'nodemailer';
+import { Resend } from 'resend';
 
 export const prerender = false;
 
@@ -27,32 +27,20 @@ export const POST: APIRoute = async ({ request }) => {
     );
   }
 
-  // Check SMTP config is present
-  const smtpHost = import.meta.env.SMTP_HOST;
-  const smtpUser = import.meta.env.SMTP_USER;
-  if (!smtpHost || !smtpUser) {
+  const apiKey = import.meta.env.RESEND_API_KEY;
+  if (!apiKey) {
     return new Response(
       JSON.stringify({ error: 'Mail transport not configured' }),
       { status: 500, headers: { 'Content-Type': 'application/json' } }
     );
   }
 
-  const smtpPort = Number(import.meta.env.SMTP_PORT);
-
-  const transporter = nodemailer.createTransport({
-    host: smtpHost,
-    port: smtpPort,
-    secure: smtpPort === 465,
-    auth: {
-      user: smtpUser,
-      pass: import.meta.env.SMTP_PASS,
-    },
-  });
+  const resend = new Resend(apiKey);
 
   try {
-    await transporter.sendMail({
-      from: import.meta.env.MAIL_FROM,
-      to: import.meta.env.MAIL_TO,
+    await resend.emails.send({
+      from: import.meta.env.MAIL_FROM ?? 'onboarding@resend.dev',
+      to: import.meta.env.MAIL_TO ?? 'elrincon.valdemanco@gmail.com',
       replyTo: email,
       subject: `Contacto web: ${name}`,
       html: `
