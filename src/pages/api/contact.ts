@@ -37,30 +37,32 @@ export const POST: APIRoute = async ({ request }) => {
 
   const resend = new Resend(apiKey);
 
-  try {
-    await resend.emails.send({
-      from: import.meta.env.MAIL_FROM ?? 'onboarding@resend.dev',
-      to: import.meta.env.MAIL_TO ?? 'elrincon.valdemanco@gmail.com',
-      replyTo: email,
-      subject: `Contacto web: ${name}`,
-      html: `
-        <h2>Nuevo mensaje de contacto</h2>
-        <p><strong>Nombre:</strong> ${name}</p>
-        <p><strong>Email:</strong> ${email}</p>
-        <p><strong>Teléfono:</strong> ${phone}</p>
-        <p><strong>Mensaje:</strong></p>
-        <p>${message}</p>
-      `,
-    });
+  const { data, error } = await resend.emails.send({
+    from: import.meta.env.MAIL_FROM ?? 'onboarding@resend.dev',
+    to: import.meta.env.MAIL_TO ?? 'elrincon.valdemanco@gmail.com',
+    replyTo: email,
+    subject: `Contacto web: ${name}`,
+    html: `
+      <h2>Nuevo mensaje de contacto</h2>
+      <p><strong>Nombre:</strong> ${name}</p>
+      <p><strong>Email:</strong> ${email}</p>
+      <p><strong>Teléfono:</strong> ${phone}</p>
+      <p><strong>Mensaje:</strong></p>
+      <p>${message}</p>
+    `,
+  });
 
+  if (error) {
+    console.error('[contact] Resend error:', error);
     return new Response(
-      JSON.stringify({ success: true }),
-      { status: 200, headers: { 'Content-Type': 'application/json' } }
-    );
-  } catch {
-    return new Response(
-      JSON.stringify({ error: 'Failed to send email' }),
+      JSON.stringify({ error: error.message }),
       { status: 500, headers: { 'Content-Type': 'application/json' } }
     );
   }
+
+  console.log('[contact] Email sent, id:', data?.id);
+  return new Response(
+    JSON.stringify({ success: true }),
+    { status: 200, headers: { 'Content-Type': 'application/json' } }
+  );
 };
