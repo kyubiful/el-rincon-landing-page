@@ -1,46 +1,35 @@
-import { Navbar, NavbarBrand, NavbarContent, NavbarItem, Button, Link, Spacer } from '@nextui-org/react'
 import { House } from './Icons'
 
 export const Menu = () => {
 
   return (
-    <Navbar 
-      className='-mb-16'
-    >
-      <NavbarBrand>
+    <nav className='-mb-16 flex items-center justify-between px-6 h-16'>
+      <div className='flex items-center gap-1'>
         <House width={23} height={23}/>
-        <Spacer x={1} />
         <p className="font-bold text-inherit">El Rincón</p>
-      </NavbarBrand>
-      <NavbarContent className="hidden sm:flex gap-4" justify="center">
-        <NavbarItem>
-          <Link color="foreground" href="/#home">
-            Inicio
-          </Link>
-        </NavbarItem>
-        <NavbarItem isActive>
-          <Link color="success" href="/#gallery" aria-current="page">
-            Fotos
-          </Link>
-        </NavbarItem>
-        <NavbarItem>
-          <Link color="foreground" href="/#info">
-            Características
-          </Link>
-        </NavbarItem>
-        <NavbarItem>
-          <Link color="foreground" href="/#opinion">
-            Opiniones 
-          </Link>
-        </NavbarItem>
-      </NavbarContent>
-      <NavbarContent className='hidden sm:flex' justify="end">
-        <NavbarItem>
-          <Button as={Link} color="success" href="/#contact" variant="flat">
-            Contacto
-          </Button>
-        </NavbarItem>
-      </NavbarContent>
-    </Navbar>
+      </div>
+      <div className="hidden sm:flex gap-4">
+        <a className='text-gray-900' href="/#home">
+          Inicio
+        </a>
+        <a className='text-green-600' href="/#gallery" aria-current="page">
+          Fotos
+        </a>
+        <a className='text-gray-900' href="/#info">
+          Características
+        </a>
+        <a className='text-gray-900' href="/#opinion">
+          Opiniones
+        </a>
+      </div>
+      <div className='hidden sm:flex'>
+        <a
+          href="/#contact"
+          className="inline-flex items-center rounded-lg px-4 py-2 bg-green-100 text-green-800 hover:bg-green-200"
+        >
+          Contacto
+        </a>
+      </div>
+    </nav>
   )
 }

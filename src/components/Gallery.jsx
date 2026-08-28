@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { CardImage } from './Cards/CardImage'
 import { GalleryModal } from './Modals/GalleryModal'
-import { Button } from '@nextui-org/react'
+import { Button } from '@heroui/react'
 import { GALLERY } from '../data/gallery'
 import { Collapse } from '@mui/material'
 
@@ -39,7 +39,7 @@ export const Gallery = () => {
                   GALLERY.map((image) => image.id < 3 && <CardImage key={image.id} url={image.url} position={image.id} handlePress={() => handlePress({id: image.id})}/>)
                 }
                 <div className='sm:hidden flex justify-center'>
-                  <Button color='success' variant='flat' onPress={() => handlePress({id: 4})}>Ver más imágenes</Button>
+                  <Button variant="tertiary" className="bg-green-100 text-green-800 hover:bg-green-200" onPress={() => handlePress({id: 4})}>Ver más imágenes</Button>
                 </div>
               </div>
               <div className='space-y-4 hidden sm:block'>
@@ -55,7 +55,7 @@ export const Gallery = () => {
             </div>
           </Collapse>
           <div className='bg-gradient-to-b from-transparent to-green-200 -mt-24 h-24 w-full z-10 flex justify-center'>
-            { morePhotos ? null : <Button onPress={handleMorePhotos} className='-mt-5' color='primary' variant='shadow'>Ver más</Button> }
+            { morePhotos ? null : <Button variant="primary" className="-mt-5 shadow-lg" onPress={handleMorePhotos}>Ver más</Button> }
           </div>
         </div>
       </div>
