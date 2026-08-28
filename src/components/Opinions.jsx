@@ -2,7 +2,8 @@ import { Opinion } from './Opinion'
 import { OPINIONS } from '../data/opinions'
 import { Swiper, SwiperSlide } from 'swiper/react'
 import { EffectCards, Autoplay } from 'swiper/modules'
-import '../../node_modules/swiper/swiper.css'
+import 'swiper/css'
+import 'swiper/css/effect-cards'
 
 export const Opinions = () => {
 
