@@ -1,14 +1,13 @@
 ---
 import Layout from '../layouts/Layout.astro'
-import { Menu } from '../components/Menu'
-import { Home } from '../components/Home'
-import { Gallery } from '../components/Gallery'
-import { HouseInfo } from '../components/HouseInfo'
-import { Contact } from '../components/Contact'
-import { Opinions } from '../components/Opinions'
-import { Footer } from '../components/Footer'
-import { Toaster } from 'sonner'
-import { MobileMenu } from '../components/MobileMenu'
+import Menu from '../components/Menu.astro'
+import Home from '../components/Home.astro'
+import Gallery from '../components/Gallery.astro'
+import HouseInfo from '../components/HouseInfo.astro'
+import Contact from '../components/Contact.astro'
+import Opinions from '../components/Opinions.astro'
+import Footer from '../components/Footer.astro'
+import MobileMenu from '../components/MobileMenu.astro'
 
 import '../styles.css'
 export const prerender = false
@@ -17,15 +16,14 @@ export const prerender = false
 <Layout title="Casa Rural el Rincón">
 	<main>
 		<Menu />
-		<MobileMenu client:only="react"/>
+		<MobileMenu />
 		<Home />
-		<Gallery client:idle />
+		<Gallery />
 		<HouseInfo />
-		<Opinions client:only="react" />
-		<Contact client:visible />
+		<Opinions />
+		<Contact />
 		<Footer />
 	</main>
-	<Toaster closeButton richColors client:only="react"/>
 </Layout>
 <script>
 
