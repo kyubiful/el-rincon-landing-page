@@ -17,7 +17,7 @@ import { GALLERY } from '../data/gallery'
         <div class='w-full sm:w-auto grid grid-cols-1 gap-4 lg:gap-4 sm:grid-cols-2 lg:grid-cols-3 p-10'>
           <div class='space-y-4'>
             {
-              GALLERY.map((image) => image.id < 3 && <CardImage url={image.url} id={image.id} />)
+              GALLERY.map((image) => image.id < 3 && <CardImage url={image.url} id={image.id} alt={image.alt} />)
             }
             <div class='sm:hidden flex justify-center'>
               <button
@@ -31,12 +31,12 @@ import { GALLERY } from '../data/gallery'
           </div>
           <div class='space-y-4 hidden sm:block'>
             {
-              GALLERY.map((image) => image.id >= 3 && image.id <= 5 && <CardImage url={image.url} id={image.id} />)
+              GALLERY.map((image) => image.id >= 3 && image.id <= 5 && <CardImage url={image.url} id={image.id} alt={image.alt} />)
             }
           </div>
           <div class='space-y-4 hidden lg:block'>
             {
-              GALLERY.map((image) => image.id > 5 && <CardImage url={image.url} id={image.id} />)
+              GALLERY.map((image) => image.id > 5 && <CardImage url={image.url} id={image.id} alt={image.alt} />)
             }
           </div>
         </div>
@@ -75,7 +75,10 @@ import { GALLERY } from '../data/gallery'
   const setImage = (id) => {
     currentIndex = id
     const image = images[id]
-    if (image && modalImage) modalImage.src = image.url
+    if (image && modalImage) {
+      modalImage.src = image.url
+      modalImage.alt = image.alt
+    }
     if (modalCounter) modalCounter.textContent = `${id + 1} / ${images.length}`
   }
 

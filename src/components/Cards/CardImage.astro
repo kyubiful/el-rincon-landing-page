@@ -1,5 +1,5 @@
 ---
-const { url, id } = Astro.props;
+const { url, id, alt } = Astro.props;
 ---
 <button
   type='button'
@@ -7,7 +7,7 @@ const { url, id } = Astro.props;
   class='gallery-image-btn w-full rounded-xl overflow-hidden shadow-sm hover:scale-[1.02] transition-transform cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500'
 >
   <img
-    alt='Imagen de la casa rural'
+    alt={alt}
     class='w-full object-cover rounded-xl'
     src={url}
     loading='lazy'
