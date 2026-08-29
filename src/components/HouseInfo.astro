@@ -1,0 +1,22 @@
+---
+import { INFO, ICON_FILL } from '../data/info'
+---
+<div class="flex flex-col gap-4 items-center pb-24 mb-60 pt-24 -mt-12 md:pt-60 md:-mt-32 lg:pb-40 lg:pt-56 lg:-mt-32 lg:-mb-14 bg-[linear-gradient(180deg,#f0fdf4_0%,#fff_220px)]" id='info'>
+  <p class='text-sm font-semibold uppercase tracking-widest text-green-600'>La casa</p>
+  <p class='font-display italic font-medium text-4xl md:text-5xl text-gray-800'>Alquiler íntegro</p>
+  <div class='mt-10 w-full max-w-4xl px-6'>
+    <ul
+      class='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-px bg-gray-200 border border-gray-200 rounded-2xl overflow-hidden opacity-0'
+      id='homeInfo'
+    >
+      {
+        INFO.map(({ text, Icon }) =>
+          <li class='flex flex-col items-center justify-center gap-3 bg-white p-6 text-center'>
+            <Icon width={30} height={30} fill={ICON_FILL} />
+            <p class='text-base font-bold text-gray-800'>{text}</p>
+          </li>
+        )
+      }
+    </ul>
+  </div>
+</div>

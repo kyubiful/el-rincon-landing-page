@@ -1,8 +1,7 @@
 @import "tailwindcss";
-@import "@heroui/react/styles";
 
 @theme {
-  --animate-fadeIn: fadeIn 1s ease-in-out;
+  --animate-fadeIn: fadeIn 1s ease-in-out forwards;
   @keyframes fadeIn {
     from {
       opacity: 0;
@@ -13,6 +12,6 @@
   }
 }
 
-.swiper-slide-shadow {
-  background: none !important;
+.font-display {
+  font-family: 'Spectral', Georgia, serif;
 }

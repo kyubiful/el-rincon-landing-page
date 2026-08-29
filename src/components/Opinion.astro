@@ -1,0 +1,40 @@
+---
+import { Star, HalfStar, EmptyStar } from './Icons'
+
+const { name, text, stars } = Astro.props
+
+const getInitials = (name) =>
+  name.trim().split(/\s+/).slice(0, 2).map((word) => word[0]).join('').toUpperCase()
+
+const convertToArray = () => {
+  let array = []
+  for (let i = 1; i <= 5; i++) {
+    i <= stars && stars - i !== 0.5 && array.push('rated')
+    stars - i === 0.5 && array.push('midrated')
+    i > stars && array.push('unrated')
+  }
+  return array
+}
+---
+<div class="bg-white border border-gray-200 rounded-2xl shadow-sm p-8 flex flex-col gap-4 h-full">
+  <div class="flex gap-1">
+    {
+      convertToArray().map((star) =>
+        star === 'rated' ? (
+          <Star width={16} height={16} fill="warning" />
+        ) : star === 'midrated' ? (
+          <HalfStar width={16} height={16} fill="warning" />
+        ) : (
+          <EmptyStar width={16} height={16} fill="warning" />
+        )
+      )
+    }
+  </div>
+  <p class="text-[15px] leading-relaxed text-gray-700 flex-grow">"{text}"</p>
+  <div class="flex items-center gap-3 pt-2 border-t border-gray-100">
+    <div class="w-10 h-10 rounded-full bg-green-800 flex items-center justify-center flex-shrink-0">
+      <span class="font-display text-white text-sm font-semibold">{getInitials(name)}</span>
+    </div>
+    <span class="text-sm font-semibold text-gray-800">{name}</span>
+  </div>
+</div>

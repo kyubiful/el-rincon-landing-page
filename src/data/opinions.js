@@ -47,4 +47,16 @@ export const OPINIONS = [
     text: "Estuvimos tres noches en Navidades. La dueña, Piedad, era muy simpática y generosa, nos dejó la casa decorada con todo tipo de adorno y muchos detalles. Todo muy limpio, cómodo y calentito, un sitio estupendo para dos familias con ganas de pasar unos días en una aldea tranquila con un hermoso paisaje alrededor. Muy recomendable.",
     stars: 5,
   },
+  {
+    id: 8,
+    name: "Jose Manuel Perez Araguz",
+    text: "Bonita, limpia, con detalles. Una casa rural reformada que combina lo antiguo y lo moderno. Cocina amplia y con equipamiento suficiente. Los baños están muy bien.",
+    stars: 5,
+  },
+  {
+    id: 9,
+    name: "Pilar",
+    text: "Hemos pasado un fin de año estupendo en la casa. Todo muy limpio, la casa es grande y con todo lo necesario para pasar unos días. Hemos estado muy cómodos y Piedad ha tenido detalles muy de agradecer.",
+    stars: 5,
+  }
 ];

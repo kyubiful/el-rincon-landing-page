@@ -1,0 +1,37 @@
+---
+import { Star } from './Icons'
+---
+<div
+  class='bg-[url(/assets/img/home.webp)] h-screen w-screen bg-cover bg-center bg-no-repeat z-10 relative flex items-end'
+  id='home'
+>
+  <div class='absolute inset-0 bg-linear-to-b from-black/5 to-black/75' />
+  <div id="homeCard" class="opacity-0 relative w-full px-6 pb-16 md:px-16 md:pb-24 lg:px-24 lg:pb-28">
+    <div class='flex flex-col items-start gap-6 max-w-3xl'>
+      <div class='inline-flex items-center gap-2 rounded-full bg-white/90 backdrop-blur-md px-4 py-2 shadow-sm'>
+        <Star width={16} height={16} fill='warning' />
+        <p class='text-sm font-medium text-gray-800'>5 · 10 opiniones de huéspedes</p>
+      </div>
+      <h1 class='font-display italic font-medium text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-white'>
+        Casa Rural El Rincón
+      </h1>
+      <p class='text-base md:text-lg text-white/90'>
+        Toda la casa para vosotros, en el corazón de Valdemanco del Esteras.
+      </p>
+      <div class='flex flex-col sm:flex-row gap-4 w-full sm:w-auto pt-2'>
+        <a
+          href='#contact'
+          class='inline-flex justify-center items-center rounded-lg px-6 py-3 bg-green-600 text-white font-medium hover:bg-green-700 transition-colors'
+        >
+          Reservar estancia
+        </a>
+        <a
+          href='#gallery'
+          class='inline-flex justify-center items-center rounded-lg px-6 py-3 border border-white text-white font-medium hover:bg-white/10 transition-colors'
+        >
+          Ver galería
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

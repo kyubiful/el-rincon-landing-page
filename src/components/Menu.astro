@@ -1,0 +1,79 @@
+---
+import { House } from './Icons'
+---
+<nav class='sticky top-0 z-40 -mb-16 flex items-center justify-between px-6 h-16 backdrop-blur-md bg-white/70 border-b border-gray-200/60 transition-colors'>
+  <div class='flex items-center gap-1'>
+    <House width={23} height={23}/>
+    <p class="font-bold text-inherit">El Rincón</p>
+  </div>
+  <div class="hidden sm:flex gap-4">
+    <a class='nav-link text-gray-900' href="/#home" data-scroll-to="home">
+      Inicio
+    </a>
+    <a class='nav-link text-gray-900' href="/#gallery" data-scroll-to="gallery">
+      Fotos
+    </a>
+    <a class='nav-link text-gray-900' href="/#info" data-scroll-to="info">
+      Características
+    </a>
+    <a class='nav-link text-gray-900' href="/#opinion" data-scroll-to="opinion">
+      Opiniones
+    </a>
+  </div>
+  <div class='hidden sm:flex'>
+    <a
+      href="/#contact"
+      data-scroll-to="contact"
+      class="inline-flex items-center rounded-lg px-4 py-2 bg-green-100 text-green-800 hover:bg-green-200"
+    >
+      Contacto
+    </a>
+  </div>
+</nav>
+
+<script>
+  const links = document.querySelectorAll<HTMLAnchorElement>('nav a[data-scroll-to]')
+
+  links.forEach((link) => {
+    link.addEventListener('click', (e) => {
+      const target = document.getElementById(link.dataset.scrollTo ?? '')
+      if (!target) return
+      e.preventDefault()
+      target.scrollIntoView({ behavior: 'smooth', block: 'center' })
+    })
+  })
+
+  const navLinks = document.querySelectorAll<HTMLAnchorElement>('.nav-link[data-scroll-to]')
+
+  const setActiveSection = (id: string) => {
+    navLinks.forEach((link) => {
+      const isActive = link.dataset.scrollTo === id
+      link.classList.toggle('text-green-600', isActive)
+      link.classList.toggle('underline', isActive)
+      link.classList.toggle('underline-offset-4', isActive)
+      link.classList.toggle('decoration-2', isActive)
+      link.classList.toggle('text-gray-900', !isActive)
+      if (isActive) link.setAttribute('aria-current', 'page')
+      else link.removeAttribute('aria-current')
+    })
+  }
+
+  const sectionIds = Array.from(navLinks)
+    .map((link) => link.dataset.scrollTo)
+    .filter((id): id is string => Boolean(id))
+
+  const sections = sectionIds
+    .map((id) => document.getElementById(id))
+    .filter((el): el is HTMLElement => el !== null)
+
+  const sectionObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) setActiveSection(entry.target.id)
+      })
+    },
+    { rootMargin: '-40% 0px -40% 0px', threshold: 0 }
+  )
+
+  sections.forEach((section) => sectionObserver.observe(section))
+</script>
